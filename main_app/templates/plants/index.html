@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Plant List</h1>
+
+{% for plant in plants %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ plant.name }}</span>
+      <p>Taxonomy: {{ plant.taxonomy }}</p>
+      {% if plant.indoor and not plant.outdoor %}
+        <p>Indoor plant</p>
+      {% elif plant.outdoor and not plant.indoor %}
+        <p>Outdoor plant</p>
+      {% else %}
+        <p>Indoor/Outdoor plant</p>
+      {% endif %}
+      <p>Needs: {{ plant.sun }}</p>
+      <p>Min temperature F: {{ plant.temperature_f }}</p>
+      <p>Owned since: {{ plant.purchase_date }}</p>
+      <p>Container diameter: {{ plant.diameter_i }}</p>
+      <p>Watering frequency: {{ plant.watering_frequency }}</p>
+      <img src="{{ plant.photo }}">
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock %}
